@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lista de Presentes — Erasto & Lorena</title>
+  <meta name="description" content="Site de presente de casamento — Erasto & Lorena — 07/02/2026" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --text: #e7eefc;
+      --muted: rgba(231,238,252,.72);
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 15% -10%, rgba(125,211,252,.22), transparent 60%),
+        radial-gradient(800px 520px at 95% 10%, rgba(167,139,250,.18), transparent 55%),
+        radial-gradient(900px 520px at 50% 110%, rgba(34,211,238,.10), transparent 55%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 18px 56px; }
+    header {
+      display: flex; gap: 18px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap;
+      padding: 18px 18px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .title h1 { margin: 0; font-size: 28px; letter-spacing: .2px; }
+    .title p { margin: 8px 0 0; color: var(--muted); }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      font-weight: 600; color: rgba(231,238,252,.9);
+      white-space: nowrap;
+    }
+    .pill small { opacity: .85; font-weight: 600; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform .06s ease, background .15s ease;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn--primary {
+      border-color: rgba(125,211,252,.35);
+      background: linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,139,250,.16));
+    }
+    .section {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+      padding: 14px 16px;
+    }
+    .section h2 { margin: 0 0 6px; font-size: 16px; }
+    .section p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card {
+      grid-column: span 6;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 14px 46px rgba(0,0,0,.28);
+      transition: transform .10s ease, border-color .15s ease;
+    }
+    .card:hover { transform: translateY(-1px); border-color: rgba(125,211,252,.35); }
+    .card__img {
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .card__body { padding: 14px 14px 16px; }
+    .card__top { display:flex; gap:12px; align-items:flex-start; justify-content:space-between; }
+    h3 { margin: 0; font-size: 16px; letter-spacing: .2px; }
+    .price { font-weight: 900; color: rgba(125,211,252,.95); white-space: nowrap; }
+    .muted { color: var(--muted); margin: 8px 0 0; font-size: 13px; }
+    .card__actions {
+      margin-top: 12px;
+      display:flex; gap: 12px; align-items:center; justify-content: space-between; flex-wrap: wrap;
+    }
+    .qty {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+    }
+    .qty__btn {
+      width: 30px; height: 30px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .qty__input {
+      width: 58px;
+      text-align: center;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 18px;
+      color: rgba(231,238,252,.62);
+      font-size: 12px;
+      text-align: center;
+    }
+    @media (max-width: 920px) {
+      .card { grid-column: span 12; }
+      .card__img { height: 170px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <div class="pill">💍 <span>Casamento de <strong>Erasto</strong> & <strong>Lorena</strong></span></div>
+        <h1>Lista de Presentes</h1>
+        <p>Data: <strong>07/02/2026</strong> • Escolha um presente e você será direcionado(a) para a página de pagamento.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" id="shareBtn" href="#" target="_blank" rel="noopener">📲 Enviar link no WhatsApp</a>
+        <a class="btn btn--primary" href="#presentes">🎁 Ver presentes</a>
+      </div>
+    </header>
+
+    <div class="section">
+      <h2>Como funciona</h2>
+      <p>1) Selecione o presente e a quantidade • 2) Pague via Pix na próxima página • 3) Envie o comprovante pelo WhatsApp para confirmar.</p>
+    </div>
+
+    <div id="presentes" class="grid">
+      
+      <article class="card" data-id="disney" data-title="Ingressos para Disney" data-price="650.0" data-img="https://source.unsplash.com/1200x800/?disney,castle">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?disney,castle');" role="img" aria-label="Ingressos para Disney"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Ingressos para Disney</h3>
+            <div class="price">R$ 650,00</div>
+          </div>
+          <p class="muted">Ajude a realizar esse sonho na lua de mel.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="cafe" data-title="Café da manhã" data-price="250.0" data-img="https://source.unsplash.com/1200x800/?breakfast,coffee">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?breakfast,coffee');" role="img" aria-label="Café da manhã"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Café da manhã</h3>
+            <div class="price">R$ 250,00</div>
+          </div>
+          <p class="muted">Um café especial para começar bem o dia.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="passagem" data-title="Ajuda na passagem aérea (EUA)" data-price="500.0" data-img="https://source.unsplash.com/1200x800/?american,flag,usa">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?american,flag,usa');" role="img" aria-label="Ajuda na passagem aérea (EUA)"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Ajuda na passagem aérea (EUA)</h3>
+            <div class="price">R$ 500,00</div>
+          </div>
+          <p class="muted">Contribuição para as passagens da lua de mel.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="carro" data-title="Aluguel de carro nos EUA" data-price="500.0" data-img="https://source.unsplash.com/1200x800/?pickup,truck,ram">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?pickup,truck,ram');" role="img" aria-label="Aluguel de carro nos EUA"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Aluguel de carro nos EUA</h3>
+            <div class="price">R$ 500,00</div>
+          </div>
+          <p class="muted">Para passear com conforto durante a viagem.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="almoco" data-title="Almoço em Orlando" data-price="300.0" data-img="https://source.unsplash.com/1200x800/?lunch,restaurant">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?lunch,restaurant');" role="img" aria-label="Almoço em Orlando"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Almoço em Orlando</h3>
+            <div class="price">R$ 300,00</div>
+          </div>
+          <p class="muted">Um almoço gostoso no roteiro.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="seaworld" data-title="Ingresso para o SeaWorld" data-price="500.0" data-img="https://source.unsplash.com/1200x800/?seaworld,orlando,themepark">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?seaworld,orlando,themepark');" role="img" aria-label="Ingresso para o SeaWorld"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Ingresso para o SeaWorld</h3>
+            <div class="price">R$ 500,00</div>
+          </div>
+          <p class="muted">Um dia inesquecível no parque.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="jantar" data-title="Jantar em Orlando" data-price="500.0" data-img="https://source.unsplash.com/1200x800/?dinner,restaurant">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?dinner,restaurant');" role="img" aria-label="Jantar em Orlando"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Jantar em Orlando</h3>
+            <div class="price">R$ 500,00</div>
+          </div>
+          <p class="muted">Um jantar romântico.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="hotel" data-title="Diária de hotel (Orlando)" data-price="450.0" data-img="https://source.unsplash.com/1200x800/?hotel,room">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?hotel,room');" role="img" aria-label="Diária de hotel (Orlando)"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Diária de hotel (Orlando)</h3>
+            <div class="price">R$ 450,00</div>
+          </div>
+          <p class="muted">Ajuda com hospedagem.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="seguro" data-title="Seguro viagem (EUA)" data-price="350.0" data-img="https://source.unsplash.com/1200x800/?travel,passport,insurance">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?travel,passport,insurance');" role="img" aria-label="Seguro viagem (EUA)"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Seguro viagem (EUA)</h3>
+            <div class="price">R$ 350,00</div>
+          </div>
+          <p class="muted">Para viajar tranquilo(a).</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="souvenir" data-title="Lembrancinhas e souvenirs" data-price="200.0" data-img="https://source.unsplash.com/1200x800/?souvenir,gift">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?souvenir,gift');" role="img" aria-label="Lembrancinhas e souvenirs"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Lembrancinhas e souvenirs</h3>
+            <div class="price">R$ 200,00</div>
+          </div>
+          <p class="muted">Mimos da viagem.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="card" data-id="passeio" data-title="Passeio especial (Orlando)" data-price="400.0" data-img="https://source.unsplash.com/1200x800/?orlando,night,city">
+        <div class="card__img" style="background-image:url('https://source.unsplash.com/1200x800/?orlando,night,city');" role="img" aria-label="Passeio especial (Orlando)"></div>
+        <div class="card__body">
+          <div class="card__top">
+            <h3>Passeio especial (Orlando)</h3>
+            <div class="price">R$ 400,00</div>
+          </div>
+          <p class="muted">Experiência extra no roteiro.</p>
+          <div class="card__actions">
+            <div class="qty">
+              <button class="qty__btn" data-action="dec" type="button" aria-label="Diminuir">−</button>
+              <input class="qty__input" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Quantidade" />
+              <button class="qty__btn" data-action="inc" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn btn--primary" data-action="pay" type="button">Escolher e pagar</button>
+          </div>
+        </div>
+      </article>
+    
+    </div>
+
+    <footer>
+      Feito com carinho para nossos convidados. 💙
+    </footer>
+  </div>
+
+<script>
+(function() {
+  const brl = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const shareBtn = document.getElementById('shareBtn');
+
+  // WhatsApp share (usa a URL atual)
+  shareBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = window.location.href.split('#')[0];
+    const msg = `Site de presentes do casamento de Erasto & Lorena (07/02/2026): ${url}`;
+    shareBtn.href = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    window.open(shareBtn.href, '_blank');
+  });
+
+  // Quantidade + / -
+  document.querySelectorAll('.card').forEach(card => {
+    const input = card.querySelector('.qty__input');
+    card.addEventListener('click', (ev) => {
+      const btn = ev.target.closest('[data-action]');
+      if (!btn) return;
+
+      const action = btn.getAttribute('data-action');
+      if (action === 'inc' || action === 'dec') {
+        ev.preventDefault();
+        ev.stopPropagation();
+        let v = parseInt(input.value || '1', 10);
+        if (Number.isNaN(v)) v = 1;
+        if (action === 'inc') v = Math.min(99, v + 1);
+        if (action === 'dec') v = Math.max(1, v - 1);
+        input.value = v;
+        return;
+      }
+
+      if (action === 'pay') {
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        const id = card.dataset.id;
+        const title = card.dataset.title;
+        const price = parseFloat(card.dataset.price);
+        const img = card.dataset.img;
+        let qty = parseInt(input.value || '1', 10);
+        if (Number.isNaN(qty) || qty < 1) qty = 1;
+
+        const params = new URLSearchParams();
+        params.set('id', id);
+        params.set('title', title);
+        params.set('price', String(price));
+        params.set('qty', String(qty));
+        params.set('img', img);
+
+        window.location.href = `pagamento.html?${params.toString()}`;
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
